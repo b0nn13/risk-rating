@@ -4,5 +4,6 @@ public enum Category {
 
     DEFAULTED,
     HIGHRISK,
-    MEDIUMRISK
+    MEDIUMRISK,
+    PEP
 }

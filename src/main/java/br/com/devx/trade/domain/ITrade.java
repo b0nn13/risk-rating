@@ -14,10 +14,21 @@ public class ITrade {
     /** indicates when the next payment from the client to the bank is expected */
     private LocalDate nextPaymentDate;
 
+    /** PEP (politically exposed person) */
+    private boolean politicallyExposed;
+
+    public ITrade(double value, String clientSector, LocalDate nextPaymentDate, boolean politicallyExposed) {
+        this.value = value;
+        this.clientSector = clientSector;
+        this.nextPaymentDate = nextPaymentDate;
+        this.politicallyExposed = politicallyExposed;
+    }
+
     public ITrade(double value, String clientSector, LocalDate nextPaymentDate) {
         this.value = value;
         this.clientSector = clientSector;
         this.nextPaymentDate = nextPaymentDate;
+        this.politicallyExposed = false;
     }
 
     public double getValue() {
@@ -42,5 +53,9 @@ public class ITrade {
 
     public void setNextPaymentDate(LocalDate nextPaymentDate) {
         this.nextPaymentDate = nextPaymentDate;
+    }
+
+    public boolean isPoliticallyExposed() {
+        return politicallyExposed;
     }
 }

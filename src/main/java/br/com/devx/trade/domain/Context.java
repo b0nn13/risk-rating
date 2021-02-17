@@ -1,15 +1,14 @@
 package br.com.devx.trade.domain;
 
-import br.com.devx.trade.business.Classifier;
-import br.com.devx.trade.business.DefaultedClassifier;
-import br.com.devx.trade.business.HighRiskClassifier;
-import br.com.devx.trade.business.MediumRiskClassifier;
+import br.com.devx.trade.business.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class Context {
 
+
+    private final Classifier pep = new PEPClassifier();
     private final Classifier defaulted = new DefaultedClassifier();
     private final Classifier high = new HighRiskClassifier();
     private final Classifier medium = new MediumRiskClassifier();
@@ -20,6 +19,7 @@ public class Context {
     public Context(final LocalDate referenceDate, final List<ITrade> trades) {
         this.referenceDate = referenceDate;
         this.trades = trades;
+        this.pep.setNextClassifier(this.defaulted);
         this.defaulted.setNextClassifier(this.high);
         this.high.setNextClassifier(this.medium);
     }
@@ -27,7 +27,7 @@ public class Context {
     public void checkRiskAnalysis() {
         this.getTrades().forEach(trade -> {
             TradeAnalysisRequest request = new TradeAnalysisRequest(getReferenceDate(), trade);
-            Category rank = this.defaulted.rank(request);
+            Category rank = this.pep.rank(request);
             System.out.println(rank);
         });
     }
