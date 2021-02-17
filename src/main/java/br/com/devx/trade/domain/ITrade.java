@@ -17,7 +17,8 @@ public class ITrade {
     /** PEP (politically exposed person) */
     private boolean politicallyExposed;
 
-    public ITrade(double value, String clientSector, LocalDate nextPaymentDate, boolean politicallyExposed) {
+    public ITrade(double value, String clientSector,
+                  LocalDate nextPaymentDate, boolean politicallyExposed) {
         this.value = value;
         this.clientSector = clientSector;
         this.nextPaymentDate = nextPaymentDate;
