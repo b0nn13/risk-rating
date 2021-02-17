@@ -18,7 +18,6 @@ public class Main {
     public static void main(String[] args) {
 
         String refDateStr = INPUT.next();
-        System.out.println(refDateStr);
         LocalDate refDate = DateUtil.toLocalDate(refDateStr);
         Integer countTraders = INPUT.nextInt();
 
